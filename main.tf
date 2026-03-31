@@ -47,3 +47,43 @@ resource "aws_instance" "analytics-service" {
     Name = "analytics-service"
   }
 }
+
+resource "aws_route53_record" "frontend" {
+  zone_id = "Z04759742TOEKPTLQKQGL"
+  name    = "frontend-dev"
+  type    = "A"
+  ttl     = "30"
+  records = [ aws_instance.frontend.private_ip]
+}
+
+resource "aws_route53_record" "postgresql" {
+  zone_id = "Z04759742TOEKPTLQKQGL"
+  name    = "postgresql-dev"
+  type    = "A"
+  ttl     = "30"
+  records = [ aws_instance.postgresql.private_ip]
+}
+
+resource "aws_route53_record" "auth-service" {
+  zone_id = "Z04759742TOEKPTLQKQGL"
+  name    = "auth-service-dev"
+  type    = "A"
+  ttl     = "30"
+  records = [ aws_instance.auth-service.private_ip]
+}
+
+resource "aws_route53_record" "portfolio-service" {
+  zone_id = "Z04759742TOEKPTLQKQGL"
+  name    = "portfolio-service-dev"
+  type    = "A"
+  ttl     = "30"
+  records = [ aws_instance.portfolio-service.private_ip]
+}
+
+resource "aws_route53_record" "analytics-service" {
+  zone_id = "Z04759742TOEKPTLQKQGL"
+  name    = "analytics-service-dev"
+  type    = "A"
+  ttl     = "30"
+  records = [ aws_instance.analytics-service.private_ip]
+}
